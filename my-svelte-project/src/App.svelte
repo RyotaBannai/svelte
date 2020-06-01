@@ -1,10 +1,15 @@
 <script>
 	export let name;
+	import Login from './components/Login.svelte';
+	import CatClipList from './components/CatClipList.svelte';
+	import Color from './components/Color.svelte';
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Login/>
+	<CatClipList/>
+	<Color/>
 </main>
 
 <style>
