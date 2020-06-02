@@ -3,13 +3,14 @@
 	import Login from './components/Login.svelte';
 	import CatClipList from './components/CatClipList.svelte';
 	import Color from './components/Color.svelte';
+	import AVIndex from './components/AwecomeVideo/AVIndex.svelte'
+	import EnterPin from './components/EnterPin/EPIndex.svelte'
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<Login/>
-	<CatClipList/>
-	<Color/>
+	<AVIndex></AVIndex>
+	<EnterPin></EnterPin>
 </main>
 
 <style>

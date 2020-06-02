@@ -22,3 +22,5 @@ on:click={fireEvent}
 ```
 - [`Event Forwarding`](https://svelte.dev/tutorial/event-forwarding): component events don't bubble. if you want it bubbles, then add component with the same eventListener
 - Vueのv-modle は `<input bind:value={name}>` に相当
+- Every block-level element has `clientWidth, clientHeight, offsetWidth and offsetHeight` bindings:
+- Vue の参照の`ref`は svelte では `bind:this={someVariable}`
