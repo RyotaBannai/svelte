@@ -93,4 +93,7 @@ on:click={fireEvent}
 </Child>
 ```
 - Named slots can also have props; use the let directive on an element with a slot="..." attribute, instead of on the component itself.
-  
+### Context API
+> The `context API` provides a mechanism for components to 'talk' to each other `without passing around data and functions as props, or dispatching lots of events`. It's an advanced feature, but a useful one.
+- `setContext` and `getContext`. If a component calls `setContext(key, context)`, then a`ny child component can retrieve the context` with `const context = getContext(key)`.
+- [with context API you don't need store thing:)] (https://svelte.dev/tutorial/context-api)
