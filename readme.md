@@ -57,3 +57,4 @@ on:click={fireEvent}
 ```
 - transition is reversible by default!
 - or you can set `in` and `out` `as different transition for each`.
+- we also need to apply `motion` `to the elements that aren't transitioning`. For this, we use the `animate` directive. put `animate:flip` on the label.
