@@ -11,7 +11,7 @@ npm run dev
 - `:`: `a block continuation tag`, as in `{:else}` and `{:else if 5 > x}`
 - add id when you use each like `{#each things as thing (thing.id)}`
 - not need to add conditional `if` to check (say) whether length is more than 0 or not.
-```
+```svelte
 {#each photos as photo}
     <figure>
         <img src={photo.thumbnailUrl} alt={photo.title}>
@@ -24,7 +24,7 @@ npm run dev
 ```
 - event modifiers: `on:click|once={handleClick}`
 - Vue's `@click="$emit('event')"` -> `v-on:event='evenHandler'` = Svelte's `on:click={dispatch('event')}` -> `on:event={eventHandler}`
-```js
+```svelte
 // with payload...
 function fireEvent(){
     let payload = { text: 'Hello!'}
@@ -48,3 +48,12 @@ on:click={fireEvent}
 - you can reference a store value by prefixing the store name with `$` (Any name beginning with $ is assumed to refer to a store value)
 - `derived store`: store which updated by other store's change. you can derive [multiple stores](https://svelte.dev/docs#derived)
 - `store binding`: you can bind store (say) form. (<input `bind:value={$name}>`) The $name += '!' assignment is equivalent to name.set($name + '!')
+### transition is super easy by using svelte
+- only you need to do is adding `transition` and `easing type`
+```svelte
+<p transition:fade>
+	Fades in and out
+</p>
+```
+- transition is reversible by default!
+- or you can set `in` and `out` `as different transition for each`.
