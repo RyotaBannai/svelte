@@ -97,3 +97,10 @@ on:click={fireEvent}
 > The `context API` provides a mechanism for components to 'talk' to each other `without passing around data and functions as props, or dispatching lots of events`. It's an advanced feature, but a useful one.
 - `setContext` and `getContext`. If a component calls `setContext(key, context)`, then a`ny child component can retrieve the context` with `const context = getContext(key)`.
 - [with context API you don't need store thing:)] (https://svelte.dev/tutorial/context-api)
+### Sepcial element
+- `svelte:self`: call itself svelte component. this is way easier than vue, first of vue can't read parent from child component because when child call parent haven't yet instantiated so you need to add codes below. [reference](https://github.com/RyotaBannai/vue/commit/0bd56e07e5665a6131ffad1414279ca25db3253a) However, svelte resolves automatically. what's more it has the shorthand way to do this that is adding just `<svelte:self {...someVals}/>`, you can do ordinal way `<ComponentName />` `official document`(https://svelte.dev/tutorial/svelte-self)
+```vue
+beforeCreate: function () {
+   this.$options.components.TreeFolderContents = require('./TreeFolderContents.vue').default;
+},
+```
