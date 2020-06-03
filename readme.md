@@ -58,3 +58,39 @@ on:click={fireEvent}
 - transition is reversible by default!
 - or you can set `in` and `out` `as different transition for each`.
 - we also need to apply `motion` `to the elements that aren't transitioning`. For this, we use the `animate` directive. put `animate:flip` on the label.
+### actions
+- Actions are essentially `element-level` lifecycle functions: you can do these things with action:
+    - interfacing with `third-party libraries`
+    - `lazy-loaded` images
+    - `tooltips`
+    - adding `custom event handlers`
+### classes 
+- switching class 
+```svelte
+<button
+	class:active="{current === 'baz'}"
+	on:click="{() => current = 'baz'}"
+>baz</button>
+```
+- Often, the name of the `class` will be the same as the name of the value it depends on (`variable`) then there is shorthand for this.
+```svelte
+<div class:big={big}> -> <div class:big>
+```
+### slots
+- slot からデータをparent側に渡す
+```svelte
+//child のslot
+<div>
+    <slot someVal={someVal}> fallout </slot>
+</div>
+//parent 側はlet を使って取り出す
+<Child let:someVal>
+    {#if someVal}
+        do something
+    {:else}
+        do anything else
+    {/if}   
+</Child>
+```
+- Named slots can also have props; use the let directive on an element with a slot="..." attribute, instead of on the component itself.
+  

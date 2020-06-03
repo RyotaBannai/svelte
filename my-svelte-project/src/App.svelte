@@ -1,17 +1,13 @@
 <script>
 	export let name;
-	import Login from './components/Login.svelte';
-	import CatClipList from './components/CatClipList.svelte';
-	import Color from './components/Color.svelte';
 	import AVIndex from './components/AwecomeVideo/AVIndex.svelte'
-	import EnterPin from './components/EnterPin/EPIndex.svelte'
-	import TestCustomStore from './components/TestCustomStore.svelte'
+	import Parent from './components/Slot/Parent.svelte'
+
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<AVIndex></AVIndex>
-	<TestCustomStore></TestCustomStore>
+	<Parent></Parent>
 </main>
 
 <style>
