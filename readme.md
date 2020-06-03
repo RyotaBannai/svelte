@@ -22,6 +22,12 @@ npm run dev
     <p>loading...</p>
 {/each}
 ```
+- need x times to loop
+```svelte
+{#each Array(x) as _, i}
+    <li>{i + 1}</li>
+{/each}
+```
 - event modifiers: `on:click|once={handleClick}`
 - Vue's `@click="$emit('event')"` -> `v-on:event='evenHandler'` = Svelte's `on:click={dispatch('event')}` -> `on:event={eventHandler}`
 ```svelte
@@ -98,9 +104,20 @@ on:click={fireEvent}
 - `setContext` and `getContext`. If a component calls `setContext(key, context)`, then a`ny child component can retrieve the context` with `const context = getContext(key)`.
 - [with context API you don't need store thing:)] (https://svelte.dev/tutorial/context-api)
 ### Sepcial element
-- `svelte:self`: call itself svelte component. this is way easier than vue, first of vue can't read parent from child component because when child call parent haven't yet instantiated so you need to add codes below. [reference](https://github.com/RyotaBannai/vue/commit/0bd56e07e5665a6131ffad1414279ca25db3253a) However, svelte resolves automatically. what's more it has the shorthand way to do this that is adding just `<svelte:self {...someVals}/>`, you can do ordinal way `<ComponentName />` `official document`(https://svelte.dev/tutorial/svelte-self)
+- `svelte:self`: calls itself svelte component. this is way easier than vue, first of all, vue can't read parent component from child component because when child calls parent haven't yet instantiated so you need to add codes below to let vue that parent needs child but not now. [reference](https://github.com/RyotaBannai/vue/commit/0bd56e07e5665a6131ffad1414279ca25db3253a) However, svelte resolves this dependency automatically. what's more it has the shorthand way to do this that is adding just `<svelte:self {...someVals}/>`, you can do ordinal way `<ComponentName />` `official document`(https://svelte.dev/tutorial/svelte-self)
 ```vue
 beforeCreate: function () {
-   this.$options.components.TreeFolderContents = require('./TreeFolderContents.vue').default;
+   this.$options.components.Child = require('./Child.vue').default;
 },
 ```
+- svelte's `$:` = Vue's `watch`
+- you can render component with `svelte:component` → `<svelte:component this={selected.component}/>`
+- In server-side rendering (SSR) mode, contents of `<svelte:head> `are returned separately from the rest of your HTML.
+- `Sharing code`: if there are same components and you want to share only one variable between those all the same component, then use this.
+```svelte
+<script context="module">
+	let current;
+</script>
+```
+### debug 
+- you can debug in the middle of html code `{@debug someVal}`

@@ -1,6 +1,10 @@
 <script>
     import Child from './Child.svelte';
     import ContactCard from './ContactCard.svelte'
+
+    let users = [
+        {firstname: 'Ada'},
+        {lastname: 'Lovelace'},];
 </script>
 
 <Child let:active>
@@ -9,9 +13,6 @@
     {:else}
         No!!
     {/if}
-</Child>
-<Child let:active>
-    This is the slot
 </Child>
 
 <ContactCard>
@@ -27,3 +28,8 @@
         {someVal}
 	</span>
 </ContactCard>
+
+{#each users as user}
+    {@debug user}
+    <li>user object</li>
+{/each}
