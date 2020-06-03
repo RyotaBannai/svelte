@@ -10,6 +10,18 @@ npm run dev
 - `/`: `a block closing tag` 
 - `:`: `a block continuation tag`, as in `{:else}` and `{:else if 5 > x}`
 - add id when you use each like `{#each things as thing (thing.id)}`
+- not need to add conditional `if` to check (say) whether length is more than 0 or not.
+```
+{#each photos as photo}
+    <figure>
+        <img src={photo.thumbnailUrl} alt={photo.title}>
+        <figcaption>{photo.title}</figcaption>
+    </figure>
+{:else}
+    <!-- this block renders when photos.length === 0 -->
+    <p>loading...</p>
+{/each}
+```
 - event modifiers: `on:click|once={handleClick}`
 - Vue's `@click="$emit('event')"` -> `v-on:event='evenHandler'` = Svelte's `on:click={dispatch('event')}` -> `on:event={eventHandler}`
 ```js
@@ -24,3 +36,11 @@ on:click={fireEvent}
 - Vueのv-modle は `<input bind:value={name}>` に相当
 - Every block-level element has `clientWidth, clientHeight, offsetWidth and offsetHeight` bindings:
 - Vue の参照の`ref`は svelte では `bind:this={someVariable}`
+- `export` from child, and use this as `prop` on parent.
+### Lifecycle hook - What you need to know.
+- It's recommended to `put the fetch in onMount` rather than `at the top level of the <script>` because of server-side rendering (SSR). `With the exception of onDestroy, lifecycle functions don't run during SSR`, which means we can `avoid fetching data` that should be loaded lazily once the component has been mounted in the DOM.
+- `Lifecycle functions must be called while the component is initialising` so that `the callback is bound to the component instance` — not (say) in a setTimeout.
+- If the `onMount callback returns a function`, `that function will be called when the component is destroyed`.
+- While it's important to call `lifecycle functions during the component's initialisation`, it `doesn't matter where you call them from`. Creat it in as a helper function and call it in a component you're working on.
+- The `tick` function is `unlike other lifecycle functions` in that `you can call it any time`, not just when the component first initialises. It returns `a promise` that `resolves as soon as any pending state changes have been applied to the DOM` (or immediately, if there are no pending state changes).
+> When you update component state in Svelte, `it doesn't update the DOM immediately`. Instead, it `waits until the next microtask` to see if there are any other changes that need to be applied, including in other components. Doing so avoids unnecessary work and allows the browser to batch things more effectively.

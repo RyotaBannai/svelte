@@ -2,7 +2,7 @@
     import Keypad from './Keypad.svelte';
 
     let pin;
-    $: view = pin ? pin.replace(/\d(?!$)/g, '•') : 'enter your pin';
+    $: view = pin ? pin.replace(/\d(?!$)/g, '•') : 'enter your pin'; // negative lookaround
 
     function handleSubmit() {
         alert(`submitted ${pin}`);
