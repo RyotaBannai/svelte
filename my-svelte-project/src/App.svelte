@@ -5,12 +5,13 @@
 	import Color from './components/Color.svelte';
 	import AVIndex from './components/AwecomeVideo/AVIndex.svelte'
 	import EnterPin from './components/EnterPin/EPIndex.svelte'
+	import TestCustomStore from './components/TestCustomStore.svelte'
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<AVIndex></AVIndex>
-	<EnterPin></EnterPin>
+	<TestCustomStore></TestCustomStore>
 </main>
 
 <style>

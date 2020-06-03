@@ -41,6 +41,10 @@ on:click={fireEvent}
 - It's recommended to `put the fetch in onMount` rather than `at the top level of the <script>` because of server-side rendering (SSR). `With the exception of onDestroy, lifecycle functions don't run during SSR`, which means we can `avoid fetching data` that should be loaded lazily once the component has been mounted in the DOM.
 - `Lifecycle functions must be called while the component is initialising` so that `the callback is bound to the component instance` — not (say) in a setTimeout.
 - If the `onMount callback returns a function`, `that function will be called when the component is destroyed`.
-- While it's important to call `lifecycle functions during the component's initialisation`, it `doesn't matter where you call them from`. Creat it in as a helper function and call it in a component you're working on.
+- While it's important to call `lifecycle functions during the component's initialisation`, it `doesn't matter where you call them from`. Creat it as a helper function and call it in a component you're working on.
 - The `tick` function is `unlike other lifecycle functions` in that `you can call it any time`, not just when the component first initialises. It returns `a promise` that `resolves as soon as any pending state changes have been applied to the DOM` (or immediately, if there are no pending state changes).
 > When you update component state in Svelte, `it doesn't update the DOM immediately`. Instead, it `waits until the next microtask` to see if there are any other changes that need to be applied, including in other components. Doing so avoids unnecessary work and allows the browser to batch things more effectively.
+### store
+- you can reference a store value by prefixing the store name with `$` (Any name beginning with $ is assumed to refer to a store value)
+- `derived store`: store which updated by other store's change. you can derive [multiple stores](https://svelte.dev/docs#derived)
+- `store binding`: you can bind store (say) form. (<input `bind:value={$name}>`) The $name += '!' assignment is equivalent to name.set($name + '!')
